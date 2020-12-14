@@ -91,6 +91,25 @@
 
     </form>
 </div>
+<form method="post" action="/addMess">
+    <input type="text" name="text"  />
+    <button type="submit">send message</button>
+</form>
+<div th:each="mess : ${messages}">
+    <strong>[[${mess.name}]]</strong> --
+    <span>[[${mess.text}]]</span>
+
+</div>
+
+<form th:action="@{/musicListen}">
+    <input style="
+
+                    border-radius: 10px; background-color: #007BFF;" type="submit" value="music"/>
+</form>
+
+
+
+
 <form th:action="@{/doLogout}" method="post">
     <input style=" float: right;
     margin-left: -50%; margin-top: 10px;

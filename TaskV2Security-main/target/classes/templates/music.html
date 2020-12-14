@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>music</title>
+</head>
+<body>
+<form th:action="@{/searchMusic}" method="post">
+    <div>
+        <h2>Поиск музыки:</h2>
+        <p>
+            <input type="text" name="Search" required/>
+        </p>
+        <p>
+            <input type="submit" value="Search" />
+        </p>
+
+    </div>
+
+</form>
+
+
+
+<table height="1400">
+    <tr >
+        <td ><table   width="250" height="1300"><th:block th:each="name: ${names}"><tr><td th:text="${name}"></td></tr></th:block></table></td>
+        <td><table  width="300" height="1300"><th:block th:each="href : ${hrefs}"><tr><td><audio controls>
+            <source th:src="${href}" type="audio/ogg">
+            <source th:src="${href}" type="audio/mpeg">
+            Ваш браузер не поддерживает аудиоплер
+        </audio></td></tr></th:block></table></td>
+        <td><table  width="300" height="1300"><th:block  th:each="up : ${uploads}"><tr><td><a style="border:solid; text-decoration:none" th:href="${up}">
+            download
+        </a></td></tr></th:block></table></td>
+    </tr>
+</table>
+</body>
+</html>
