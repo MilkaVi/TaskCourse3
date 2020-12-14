@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>User</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
+          integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"
+            integrity="VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<table class="table" style="">
+
+    <thead class="thead-inverse">
+    <tr>
+        <th> Files id</th>
+        <th> Files name</th>
+        <th> Date</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    </thead>
+
+    <tr th:each="file : ${files}">
+        <td th:utext="${file.getUser_id()}"></td>
+        <td th:utext="${file.getName()}"></td>
+        <td th:utext="${file.getDate()}"></td>
+        <td>
+
+
+            <form th:method="DELETE" th:action="@{/files/{id}(id=${file.getId()})}">
+                <input style="
+
+                    border-radius: 10px; background-color: #007BFF;" type="submit" value="Delete"/>
+            </form>
+
+        </td>
+
+        <td>
+
+            <form th:action="@{/files/{files_id}/edit(files_id=${file.getId()})}">
+                <input style="
+
+                    border-radius: 10px; background-color: #007BFF;" type="submit" value="Update"/>
+            </form>
+
+
+        </td>
+
+    </tr>
+
+</table>
+<div style="display: flex; justify-content: left; margin-top: 10px; ">
+    <a class="btn btn-lg btn-primary btn-block"
+       th:href="@{/files/new}">Add new file</a>
+</div>
+
+
+<h1 class="h3 mb-3 font-weight-normal" align="center" style="margitn-top: 15px; align-items: center">file selection</h1>
+<div class="container" align="center">
+    <form action="/user/select" style="margin-top: 10px;">
+
+        <div align="center" class="row">
+
+            <div class="col-md-3 mb-3">
+                <label>Id</label>
+                <input type="text" class="form-control" name="user_id">
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label>Date</label>
+                <input type="text" class="form-control" name="date">
+            </div>
+
+        </div>
+        <p><input class="btn btn-lg btn-primary btn-block" style=" border-radius: 10px; margin-top: 10px; "
+                  type="submit" value="search"></p>
+
+    </form>
+</div>
+<form th:action="@{/doLogout}" method="post">
+    <input style=" float: right;
+    margin-left: -50%; margin-top: 10px;
+    border-radius: 10px; background-color: #6f42c1;" type="submit"
+           value="Sign Out"/>
+</form>
+
+</body>
+
+</html>
